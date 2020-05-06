@@ -1,8 +1,6 @@
 ## 纯纯写作助手
 
-<img  src="https://gitee.com/scueee/img/raw/master/picgo/Snipaste_2020-05-05_22-15-18.png" align='left'/>
-
-
+![](https://gitee.com/scueee/img/raw/master/picgo/Snipaste_2020-05-05_22-15-18.png)
 
 - [x] 从 webdav 下载备份文件
 
