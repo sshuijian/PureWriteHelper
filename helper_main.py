@@ -1,9 +1,9 @@
 # python3
 import os
-import configparser
 import sqlite3
 import shutil
-
+import helper_webdav
+   
 # 找到最新文件
 def findnewestfile(file_path):
     filenames = os.listdir(file_path)
@@ -15,37 +15,12 @@ def findnewestfile(file_path):
         time_.append(c_time)
     newest_file = name_[time_.index(max(time_))]
     return newest_file
-
-
-def init():
-    # 创建文件夹
-    if not os.path.isdir("db"):
-        os.mkdir("db")
-    if not os.path.isdir("pwb"):
-        os.mkdir("pwb")
-    # GUI
-    print (
-"欢迎使用纯纯写作助手。\n\
-====================\n\
-0:打开配置\n\
-1:拉取备份\n\
-2:解压pwb\n\
-3:打开书架")
-
-def setting():
-    os.startfile("config.ini")
-def download():
-    # 读取配置
-    conf = configparser.ConfigParser()
-    conf.readfp(open('config.ini',encoding="utf-8"))
-    address = conf.get("webdav","address")
-    username = conf.get("webdav","username")
-    password = conf.get("webdav","password")
-    # 拉取备份
-    print("请输入需要拉取的备份名：\n（形如PureWriterBackup-*-*-0502132757-v15.2.9.pwb）")
-    pwb_name = input()
-    os.system("WinSCP.com /command \"open dav://"+username+":"+password+"@"+address+"\" \"get PureWriter/Backups/"+pwb_name+" pwb\\"+pwb_name+"\" \"exit\"")
-
+# 主界面
+def gui_main():
+    os.system("cls")
+    print ("欢迎使用纯纯写作助手。\n====================\n0:进入云存储\n1:解压备份\n2:打开书架")
+    ctrl()
+# 解压缩
 def unzip():
     pwb_newest = findnewestfile("pwb")
     os.system("7z.exe x -odb pwb/"+pwb_newest+" -x!*.xml -x!MD5")
@@ -80,23 +55,24 @@ def book():
     cur.close()
     print("全书默认导出至output目录下。")
 
-# def zip():
-
 def ctrl():
     print("====================")
-    num = int (input())
+    num = int(input())
     if num == 0:
-        setting()
+        helper_webdav.gui()   
     elif num == 1:
-        download()
-    elif num == 2:
         unzip()
-    elif num == 3:
+    elif num == 2:
         book()
     else:
         exit()
     ctrl()
 
 if __name__ == "__main__":
-    init()
-    ctrl()
+    # 创建文件夹
+    if not os.path.isdir("db"):
+        os.mkdir("db")
+    if not os.path.isdir("pwb"):
+        os.mkdir("pwb")
+    # 主界面
+    gui_main()
