@@ -1,12 +1,10 @@
 ## 纯纯写作助手
 
-![](https://gitee.com/scueee/img/raw/master/picgo/20200507140626.png)
+![主界面](https://gitee.com/scueee/img/raw/master/picgo/20200507140626.png)
 
-![](https://gitee.com/scueee/img/raw/master/picgo/20200507140642.png)
+![云存储界面](https://gitee.com/scueee/img/raw/master/picgo/20200507140642.png)
 
-![](https://gitee.com/scueee/img/raw/master/picgo/20200507140728.png)
-
-
+![书籍界面](https://gitee.com/scueee/img/raw/master/picgo/20200507140728.png)
 
 - [x] 云端备份的查看、下载和上传
 - [x] 解压 pwb 目录下备份文件
