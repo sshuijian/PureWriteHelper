@@ -1,6 +1,7 @@
 import os
 import configparser
 import helper_main
+import helper_book
 
 def list_look(address,username,password):
     os.system("WinSCP.com /command \"open dav://"+username+":"+password+"@"+address+"PureWriter/Backups/\" \"ls\" \"exit\"")
@@ -18,6 +19,7 @@ def read_ini():
         conf.readfp(open('config.ini',encoding="utf-8"))
     except:
         print("读取配置文件失败！")
+        
     address = conf.get("webdav","address")
     username = conf.get("webdav","username")
     password = conf.get("webdav","password")
@@ -26,7 +28,7 @@ def read_ini():
 # webdav 界面
 def gui():
     os.system("cls")
-    print("0:返回\n1:打开配置\n2:查看目录\n3:拉取备份\n4:上传备份")
+    print("0:返回\n1:打开配置\n2:查看目录\n3:拉取备份\n4:上传备份\n5:解压备份并打开书架")
     ctrl()
 
 def ctrl(): 
@@ -51,6 +53,12 @@ def ctrl():
     elif web_num == 4:
         pwb_newest = helper_main.findnewestfile("pwb")
         upload(values[0],values[1],values[2],pwb_newest)
+    elif web_num == 5:
+        helper_main.unzip()
+        helper_book.gui()
     else:
         exit()
     ctrl()
+
+if __name__ == "__main__":
+    gui()
