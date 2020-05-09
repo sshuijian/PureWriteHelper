@@ -4,6 +4,8 @@
 
 <video src="介绍视频.mp4" controls="controls" width="500" height="300">您的浏览器不支持播放该视频！</video>
 
+#### 操作介绍：[点此](https://scueee.github.io/post/pc-duan-chun-chun-xie-zuo-jie-jue-fang-an/)
+
 #### 界面：
 
 ![1](img/1.png)
