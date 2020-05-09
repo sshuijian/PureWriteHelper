@@ -79,8 +79,11 @@ def make():
             os.makedirs("output/"+book_name+"/"+i)
 
     # 写入文章内容
-    articles = cur.execute("select * from Article where folderId=\'"+folder_id+"\' and rank>0 order by rank asc")
+    articles = cur.execute("select * from Article where folderId=\'"+folder_id+"\' order by rank asc")
     for i in articles:
+        if i[9] == 0:
+            with open("output/"+book_name+"/"+i[1]+"."+i[3],"w",encoding="utf-8") as f:
+                f.write(i[2])
         index = between(category_selected_rank, i[9])
         if index == None:
             folder = category_selected_name[len(category_selected_rank)-1]
@@ -125,7 +128,7 @@ def make_one():
     if not os.path.isdir("output"):
         os.makedirs("output")
     # 写入文章内容
-    articles = cur.execute("select * from Article where folderId=\'"+folder_id+"\' and rank>0 order by rank asc")
+    articles = cur.execute("select * from Article where folderId=\'"+folder_id+"\' order by rank asc")
     all_articles = ""
     for i in articles:
         all_articles += "\n====================\n"+i[1]+"\n====================\n"+i[2]+"\n"

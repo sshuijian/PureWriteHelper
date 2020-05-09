@@ -1,5 +1,6 @@
 # python3
 import os
+import sys
 import helper_webdav
 import helper_book
 import helper_pak
@@ -20,7 +21,7 @@ def findnewestfile(file_path):
 # 主界面
 def gui_main():
     os.system("cls")
-    print ("欢迎使用纯纯写作助手。\n====================\n0:进入云存储\n1:解压备份\n2:打开书架\n3:打包文件夹为备份")
+    print ("欢迎使用纯纯写作助手。\n====================\n0:打开设置\n1:进入云存储\n2:解压备份\n3:打开书架\n4:打包文件夹为备份\n5:快速上传云备份\n6:刷新屏幕")
     ctrl()
 # 解压缩
 def unzip():
@@ -31,13 +32,24 @@ def ctrl():
     print("====================")
     num = int(input())
     if num == 0:
-        helper_webdav.gui()   
+        try:
+            os.startfile("config.ini")
+        except:
+            print("打开配置文件失败！")
+        else:
+            print("打开配置文件成功！")
     elif num == 1:
-        unzip()
+        helper_webdav.gui(0)   
     elif num == 2:
-        helper_book.gui()
+        unzip()
     elif num == 3:
+        helper_book.gui()
+    elif num == 4:
         helper_pak.gui()
+    elif num == 5:
+        helper_webdav.gui(1) 
+    elif num == 6:
+        gui_main()
     else:
         exit()
     ctrl()
